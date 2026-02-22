@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Resume Builder</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- jsPDF for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-robot text-2xl text-indigo-600 mr-3"></i>
+                    <span class="text-xl font-semibold text-gray-800">Intelligent Resume Builder</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-indigo-600" onclick="window.location.reload()">
+                        <i class="fas fa-sync-alt mr-1"></i> Reset
+                    </button>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Input Section -->
+        <div class="bg-white rounded-xl shadow-xl p-6 mb-8 animate__animated animate__fadeIn">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-magic text-indigo-600 mr-2"></i>
+                Generate Your Resume
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- GitHub Username Input -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">
+                        <i class="fab fa-github mr-2 text-gray-500"></i>GitHub Username
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" id="github-username" 
+                               class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                               placeholder="e.g., octocat" value="octocat">
+                    </div>
+                    <p class="text-xs text-gray-500">
+                        <i class="fas fa-info-circle mr-1"></i>Enter any GitHub username
+                    </p>
+                </div>
+
+                <!-- Job Description Input -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">
+                        <i class="fas fa-briefcase mr-2 text-gray-500"></i>Job Description
+                    </label>
+                    <div class="relative">
+                        <span class="absolute top-3 left-3 text-gray-500">
+                            <i class="fas fa-align-left"></i>
+                        </span>
+                        <textarea id="job-description" rows="3"
+                                  class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                                  placeholder="Paste the job description here...">We are looking for a Python developer with experience in FastAPI and machine learning. Knowledge of React is a plus.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <div class="mt-6 flex justify-center">
+                <button onclick="generateResume()" 
+                        class="group relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                    <span class="flex items-center">
+                        <i class="fas fa-wand-magic mr-2 group-hover:animate-pulse"></i>
+                        Generate Resume
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Loading Spinner (hidden by default) -->
+            <div id="loading" class="hidden mt-6 text-center">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+                <p class="text-gray-600 mt-2">Analyzing GitHub repositories and matching skills...</p>
+            </div>
+        </div>
+
+        <!-- Templates Selection Section -->
+        <div class="bg-white rounded-xl shadow-xl p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-palette text-indigo-600 mr-2"></i>
+                Choose Your Resume Template
+            </h3>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Modern Template -->
+                <div class="template-card cursor-pointer" onclick="selectTemplate('modern', this)">
+                    <div class="border-2 border-indigo-500 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+                        <!-- Template Preview Box -->
+                        <div class="h-40 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-file-alt text-4xl mb-2"></i>
+                                <p class="text-sm font-semibold">Modern</p>
+                            </div>
+                        </div>
+                        <div class="p-3 text-center bg-gray-50">
+                            <p class="text-sm text-gray-600">Clean & Contemporary</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Professional Template -->
+                <div class="template-card cursor-pointer" onclick="selectTemplate('professional', this)">
+                    <div class="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-blue-500 hover:shadow-lg transition-all duration-300">
+                        <div class="h-40 bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-briefcase text-4xl mb-2"></i>
+                                <p class="text-sm font-semibold">Professional</p>
+                            </div>
+                        </div>
+                        <div class="p-3 text-center bg-gray-50">
+                            <p class="text-sm text-gray-600">Traditional & Formal</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creative Template -->
+                <div class="template-card cursor-pointer" onclick="selectTemplate('creative', this)">
+                    <div class="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-pink-500 hover:shadow-lg transition-all duration-300">
+                        <div class="h-40 bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-paint-brush text-4xl mb-2"></i>
+                                <p class="text-sm font-semibold">Creative</p>
+                            </div>
+                        </div>
+                        <div class="p-3 text-center bg-gray-50">
+                            <p class="text-sm text-gray-600">Artistic & Bold</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Technical Template -->
+                <div class="template-card cursor-pointer" onclick="selectTemplate('technical', this)">
+                    <div class="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-green-600 hover:shadow-lg transition-all duration-300">
+                        <div class="h-40 bg-gradient-to-r from-green-600 to-teal-600 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-code text-4xl mb-2"></i>
+                                <p class="text-sm font-semibold">Technical</p>
+                            </div>
+                        </div>
+                        <div class="p-3 text-center bg-gray-50">
+                            <p class="text-sm text-gray-600">Developer Focused</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Selected Template Indicator -->
+            <div class="mt-4 flex items-center justify-between">
+                <div class="text-sm text-gray-600">
+                    <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                    Selected: <span id="selected-template-display" class="font-semibold text-indigo-600">Modern</span>
+                </div>
+                <div class="text-xs text-gray-400">
+                    Click on any template to select
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section (hidden by default) -->
+        <div id="results" class="hidden animate__animated animate__fadeInUp">
+            <!-- Summary Card with Export Button -->
+            <div class="bg-white rounded-xl shadow-xl p-6 mb-6 border-l-4 border-indigo-500">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-clipboard-check text-indigo-600 mr-2"></i>Summary
+                        </h3>
+                        <p id="summary" class="text-gray-600 text-lg"></p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="exportToPDF()" 
+                                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition flex items-center">
+                            <i class="fas fa-file-pdf mr-2"></i>
+                            Export PDF
+                        </button>
+                        <button onclick="testPDFDownload()" 
+                                class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition flex items-center">
+                            <i class="fas fa-flask mr-2"></i>
+                            Test PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="bg-white rounded-xl shadow-xl p-6 mb-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-code text-indigo-600 mr-2"></i>Skills Match
+                </h3>
+                <div id="skills-container" class="flex flex-wrap gap-3">
+                    <!-- Skills will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="bg-white rounded-xl shadow-xl p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-project-diagram text-indigo-600 mr-2"></i>GitHub Projects
+                </h3>
+                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Projects will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-gray-500 text-sm py-6">
+        <p>Made with <i class="fas fa-heart text-red-500"></i> for Intelligent Resume Builder</p>
+    </footer>
+
+    <!-- All JavaScript in one place -->
+    <script>
+    let selectedTemplate = 'modern';
+
+    // Template selection function
+    function selectTemplate(templateName, element) {
+        selectedTemplate = templateName;
+        console.log('Selected template:', templateName);
+        
+        document.querySelectorAll('.template-card > div').forEach(card => {
+            card.classList.remove('border-indigo-500', 'border-blue-500', 'border-pink-500', 'border-green-600');
+            card.classList.add('border-gray-200');
+        });
+        
+        const selectedCard = element.querySelector('div');
+        
+        switch(templateName) {
+            case 'modern':
+                selectedCard.classList.remove('border-gray-200');
+                selectedCard.classList.add('border-indigo-500');
+                break;
+            case 'professional':
+                selectedCard.classList.remove('border-gray-200');
+                selectedCard.classList.add('border-blue-500');
+                break;
+            case 'creative':
+                selectedCard.classList.remove('border-gray-200');
+                selectedCard.classList.add('border-pink-500');
+                break;
+            case 'technical':
+                selectedCard.classList.remove('border-gray-200');
+                selectedCard.classList.add('border-green-600');
+                break;
+        }
+        
+        const displayElement = document.getElementById('selected-template-display');
+        if (displayElement) {
+            displayElement.textContent = templateName.charAt(0).toUpperCase() + templateName.slice(1);
+        }
+    }
+
+    // Dark mode toggle
+    function initDarkMode() {
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeToggle.className = 'fixed bottom-4 right-4 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition z-50';
+        darkModeToggle.onclick = () => {
+            document.body.classList.toggle('dark');
+            if (document.body.classList.contains('dark')) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                document.body.classList.add('bg-gray-900');
+                document.body.classList.remove('bg-gradient-to-br', 'from-blue-50', 'to-indigo-100');
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                document.body.classList.remove('bg-gray-900');
+                document.body.classList.add('bg-gradient-to-br', 'from-blue-50', 'to-indigo-100');
+            }
+        };
+        document.body.appendChild(darkModeToggle);
+    }
+
+    // Simple test PDF function
+    function testPDFDownload() {
+        console.log("🧪 Testing PDF generation...");
+        
+        try {
+            if (typeof window.jspdf === 'undefined') {
+                console.error("❌ jsPDF not loaded!");
+                alert('PDF library not loaded. Check internet connection.');
+                return;
+            }
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(30);
+            doc.setTextColor(0, 100, 200);
+            doc.text("TEST PDF", 20, 20);
+            doc.setFontSize(12);
+            doc.text("If you can see this, PDF is working!", 20, 40);
+            doc.text("Date: " + new Date().toLocaleString(), 20, 50);
+            doc.text("Template selected: " + selectedTemplate, 20, 60);
+            
+            doc.save("test_download.pdf");
+            console.log("✅ Test PDF saved");
+            alert("Test PDF should download now! Check your downloads folder.");
+            
+        } catch (error) {
+            console.error("❌ Test failed:", error);
+            alert("Test failed: " + error.message);
+        }
+    }
+
+    // Force download PDF function (alternative method)
+    function forceDownloadPDF() {
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.text("Force Download Test", 20, 20);
+            doc.text("This is an alternative download method", 20, 30);
+            
+            const pdfBlob = doc.output('blob');
+            const url = window.URL.createObjectURL(pdfBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = "forced_download.pdf";
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            window.URL.revokeObjectURL(url);
+            
+            console.log("✅ Force download completed");
+            alert("Check your downloads folder!");
+            
+        } catch (error) {
+            console.error("❌ Force download failed:", error);
+            alert("Error: " + error.message);
+        }
+    }
+
+    // PDF Export function with DEBUGGING
+    function exportToPDF() {
+        console.log("🚀 PDF Export Started");
+        
+        try {
+            // Check if jsPDF is loaded
+            if (typeof window.jspdf === 'undefined') {
+                console.error("❌ jsPDF not loaded!");
+                alert('PDF library not loaded. Please refresh the page.');
+                return;
+            }
+            
+            console.log("✅ jsPDF is loaded");
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            console.log("✅ PDF document created");
+            
+            // Get data
+            const summary = document.getElementById('summary');
+            if (!summary) {
+                console.error("❌ Summary element not found!");
+                alert('Please generate a resume first');
+                return;
+            }
+            
+            const summaryText = summary.textContent;
+            const username = document.getElementById('github-username').value;
+            const template = selectedTemplate || 'modern';
+            
+            console.log("📊 Data extracted:", { username, template, summary: summaryText.substring(0, 50) });
+            
+            // Add content
+            doc.setFontSize(22);
+            doc.setTextColor(79, 70, 229);
+            doc.text('Resume Summary', 20, 20);
+            
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`GitHub User: ${username}`, 20, 35);
+            doc.text(`Template: ${template}`, 20, 45);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(80, 80, 80);
+            const splitSummary = doc.splitTextToSize(summaryText, 170);
+            doc.text(splitSummary, 20, 60);
+            
+            // Add skills
+            const skillTags = document.querySelectorAll('#skills-container span');
+            if (skillTags.length > 0) {
+                doc.text('Skills:', 20, 80);
+                let skillsY = 90;
+                const skills = [];
+                skillTags.forEach(tag => skills.push(tag.textContent));
+                doc.text(skills.join(' • '), 20, skillsY);
+            }
+            
+            console.log("✅ PDF content added");
+            
+            // Try multiple save methods
+            try {
+                // Method 1: Standard save
+                doc.save(`${username}_resume_${template}.pdf`);
+                console.log("✅ PDF save called");
+                
+                // Method 2: Alternative approach (blob)
+                setTimeout(() => {
+                    const pdfOutput = doc.output('blob');
+                    const url = URL.createObjectURL(pdfOutput);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `${username}_resume_${template}_alt.pdf`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                    console.log("✅ Alternative download triggered");
+                }, 100);
+                
+                alert('✅ PDF download started! Check your downloads folder.\n\nIf no file appears, click the Test PDF button.');
+                
+            } catch (saveError) {
+                console.error("❌ Save error:", saveError);
+                alert('Error saving PDF: ' + saveError.message + '\n\nPlease try the Test PDF button.');
+            }
+            
+        } catch (error) {
+            console.error("❌ PDF Error:", error);
+            alert('Error creating PDF: ' + error.message);
+        }
+    }
+
+    // Generate resume function
+    async function generateResume() {
+        const username = document.getElementById('github-username').value.trim();
+        const jobDesc = document.getElementById('job-description').value.trim();
+
+        if (!username || !jobDesc) {
+            alert('Please fill in both fields');
+            return;
+        }
+
+        document.getElementById('loading').classList.remove('hidden');
+        document.getElementById('results').classList.add('hidden');
+
+        try {
+            console.log('Sending request with template:', selectedTemplate);
+            
+            const response = await fetch('http://127.0.0.1:8000/generate_resume', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    github_username: username,
+                    job_description_text: jobDesc
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            displayResults(data);
+        } catch (error) {
+            alert('Error: ' + error.message);
+            console.error('Error:', error);
+        } finally {
+            document.getElementById('loading').classList.add('hidden');
+        }
+    }
+
+    // Display results function
+    function displayResults(data) {
+        document.getElementById('summary').textContent = data.summary;
+
+        // Remove existing template info if any
+        const existingInfo = document.querySelector('.template-info');
+        if (existingInfo) existingInfo.remove();
+
+        // Add template info to results
+        const summaryCard = document.querySelector('#results .border-l-4');
+        const templateInfo = document.createElement('p');
+        templateInfo.className = 'text-xs text-gray-400 mt-2 template-info';
+        templateInfo.innerHTML = `Template used: <span class="font-semibold text-indigo-600">${selectedTemplate}</span>`;
+        summaryCard.querySelector('div').appendChild(templateInfo);
+
+        // Display skills
+        const skillsContainer = document.getElementById('skills-container');
+        skillsContainer.innerHTML = '';
+        
+        if (data.skills && data.skills.length > 0) {
+            data.skills.forEach(skill => {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm font-medium border border-indigo-200';
+                skillTag.innerHTML = `<i class="fab fa-python mr-1"></i>${skill}`;
+                skillsContainer.appendChild(skillTag);
+            });
+        } else {
+            skillsContainer.innerHTML = '<p class="text-gray-500">No skills matched</p>';
+        }
+
+        // Display projects
+        const projectsContainer = document.getElementById('projects-container');
+        projectsContainer.innerHTML = '';
+
+        data.projects.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'bg-gray-50 rounded-xl p-5 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-indigo-300';
+            
+            const techBadges = project.technologies.map(tech => 
+                `<span class="inline-block px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded mr-2 mb-2">${tech}</span>`
+            ).join('');
+
+            projectCard.innerHTML = `
+                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <i class="fab fa-github mr-2 text-gray-600"></i>
+                    ${project.name}
+                </h4>
+                <p class="text-gray-600 text-sm mb-3">${project.description}</p>
+                <div class="flex flex-wrap">
+                    ${techBadges || '<span class="text-xs text-gray-400">No technologies listed</span>'}
+                </div>
+            `;
+            
+            projectsContainer.appendChild(projectCard);
+        });
+
+        document.getElementById('results').classList.remove('hidden');
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Test template selection function
+    function testTemplateSelection() {
+        console.log('Testing template selection...');
+        console.log('Template cards found:', document.querySelectorAll('.template-card').length);
+        
+        document.querySelectorAll('.template-card').forEach((card, index) => {
+            console.log(`Card ${index}:`, card);
+            console.log(`Onclick attribute:`, card.getAttribute('onclick'));
+        });
+    }
+
+    // Initialize everything when page loads
+    window.onload = function() {
+        initDarkMode();
+        testTemplateSelection();
+        // Set Modern as default selected
+        const modernCard = document.querySelector('[onclick*="modern"]');
+        if (modernCard) {
+            selectTemplate('modern', modernCard);
+        }
+    };
+    </script>
+</body>
+</html>

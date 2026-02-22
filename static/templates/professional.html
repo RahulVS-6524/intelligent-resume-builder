@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .resume {
+            width: 800px;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border: 2px solid #2c3e50;
+            position: relative;
+        }
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .header .title {
+            font-size: 24px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        .contact {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #34495e;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            border-bottom: 2px solid #bdc3c7;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+        }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 18px;
+            color: #34495e;
+        }
+        .company, .institution {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        .description {
+            margin-top: 8px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .skill-category h3 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .skill-items {
+            color: #555;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="badge">PROFESSIONAL</div>
+        <div class="header">
+            <h1>Jane Smith</h1>
+            <div class="title">Senior Marketing Director</div>
+            <div class="contact">
+                📧 jane.smith@email.com | 📞 (555) 987-6543 | 📍 New York, NY
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Professional Summary</h2>
+            <p style="line-height: 1.8; color: #555;">
+                Results-driven marketing professional with over 10 years of experience 
+                in digital marketing and brand management. Proven track record of 
+                increasing revenue by 150% through innovative campaigns.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Work Experience</h2>
+            <div class="experience-item">
+                <div class="item-header">
+                    <span>Marketing Director</span>
+                    <span>2020 - Present</span>
+                </div>
+                <div class="company">Global Corp, New York</div>
+                <div class="description">
+                    • Led marketing team of 15 professionals<br>
+                    • Increased brand awareness by 200%<br>
+                    • Managed $5M annual marketing budget
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <span>Senior Marketing Manager</span>
+                    <span>2017 - 2020</span>
+                </div>
+                <div class="company">Tech Solutions Inc.</div>
+                <div class="description">
+                    • Developed marketing strategy for 5 product launches<br>
+                    • Increased social media engagement by 300%<br>
+                    • Coordinated with sales team for lead generation
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="item-header">
+                    <span>MBA, Marketing</span>
+                    <span>2017</span>
+                </div>
+                <div class="institution">Harvard Business School</div>
+                <div class="description">GPA: 3.9/4.0</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Marketing</h3>
+                    <div class="skill-items">
+                        Digital Marketing<br>
+                        Brand Strategy<br>
+                        Market Research<br>
+                        SEO/SEM
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <div class="skill-items">
+                        Google Analytics<br>
+                        HubSpot<br>
+                        Salesforce<br>
+                        Adobe Creative Suite
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

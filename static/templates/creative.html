@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Resume Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .resume {
+            width: 900px;
+            background: white;
+            border-radius: 40px 40px 40px 40px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            position: relative;
+            transform: rotate(0deg);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Creative shapes background */
+        .resume::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .resume::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #feca57, #ff9f43);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5253);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(238, 82, 83, 0.3);
+            transform: rotate(5deg);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 60px 50px 40px;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        .header .title {
+            font-size: 24px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .header .contact {
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .header .contact span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            padding: 40px 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Left Column - Creative design */
+        .left {
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+            padding: 30px;
+            border-radius: 30px;
+            position: relative;
+            transform: rotate(-2deg);
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .left::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed #ff6b6b;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+            display: inline-block;
+            padding-bottom: 5px;
+            border-bottom: 4px solid #ff6b6b;
+            transform: skewX(-10deg);
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ee5253);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px 10px 30px 10px;
+            margin: 0 8px 10px 0;
+            font-size: 13px;
+            font-weight: 500;
+            transform: rotate(1deg);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        .skill-tag:nth-child(even) {
+            transform: rotate(-2deg);
+            background: linear-gradient(135deg, #feca57, #ff9f43);
+        }
+        
+        .skill-tag:nth-child(3n) {
+            background: linear-gradient(135deg, #48dbfb, #0abde3);
+        }
+        
+        /* Right Column */
+        .right {
+            padding: 20px;
+        }
+        
+        .right .section h3 {
+            border-bottom-color: #48dbfb;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px 0 20px 0;
+            transition: all 0.3s;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .experience-item:hover {
+            transform: translateX(10px) rotate(1deg);
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .experience-item h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .experience-item .company {
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .experience-item .date {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: inline-block;
+            padding: 3px 10px;
+            background: white;
+            border-radius: 20px;
+        }
+        
+        .experience-item p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .achievement-badge {
+            display: inline-block;
+            background: #48dbfb;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-top: 10px;
+        }
+        
+        .circle-decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 50%;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="badge">✨ CREATIVE ✨</div>
+        
+        <div class="header">
+            <h1>Alex Rivera</h1>
+            <div class="title">Creative Director & Designer</div>
+            <div class="contact">
+                <span><i class="fas fa-map-pin">📍</i> Austin, TX</span>
+                <span><i class="fas fa-envelope">✉️</i> alex.r@creative.design</span>
+                <span><i class="fas fa-phone">📱</i> +1 (555) 234-5678</span>
+                <span><i class="fas fa-globe">🌐</i> alexcreates.design</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="left">
+                <div class="section">
+                    <h3>🎨 Creative Toolkit</h3>
+                    <div>
+                        <span class="skill-tag">Adobe Photoshop</span>
+                        <span class="skill-tag">Illustrator</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Sketch</span>
+                        <span class="skill-tag">After Effects</span>
+                        <span class="skill-tag">Premiere Pro</span>
+                        <span class="skill-tag">Blender 3D</span>
+                        <span class="skill-tag">Procreate</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>⭐ Creative Strengths</h3>
+                    <div style="margin-top: 15px;">
+                        <div style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Creativity</span>
+                                <span>98%</span>
+                            </div>
+                            <div style="height: 8px; background: #e0e0e0; border-radius: 10px;">
+                                <div style="width: 98%; height: 100%; background: linear-gradient(90deg, #ff6b6b, #feca57); border-radius: 10px;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Innovation</span>
+                                <span>95%</span>
+                            </div>
+                            <div style="height: 8px; background: #e0e0e0; border-radius: 10px;">
+                                <div style="width: 95%; height: 100%; background: linear-gradient(90deg, #feca57, #48dbfb); border-radius: 10px;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Visual Thinking</span>
+                                <span>96%</span>
+                            </div>
+                            <div style="height: 8px; background: #e0e0e0; border-radius: 10px;">
+                                <div style="width: 96%; height: 100%; background: linear-gradient(90deg, #48dbfb, #ff6b6b); border-radius: 10px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🏆 Awards</h3>
+                    <div style="background: white; padding: 15px; border-radius: 15px; margin-top: 10px;">
+                        <p style="font-weight: bold; color: #ff6b6b;">✨ AIGA Design Award 2023</p>
+                        <p style="font-size: 13px; color: #666;">Best Digital Campaign</p>
+                        <p style="font-weight: bold; color: #48dbfb; margin-top: 10px;">✨ Webby Award 2022</p>
+                        <p style="font-size: 13px; color: #666;">People's Voice Winner</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right">
+                <div class="section">
+                    <h3>🎯 Creative Vision</h3>
+                    <p style="font-size: 16px; line-height: 1.8; color: #555; font-style: italic; background: #f8f9fa; padding: 20px; border-radius: 20px;">
+                        "Design is not just what it looks like and feels like. Design is how it works. 
+                        I blend artistic vision with functional design to create memorable experiences."
+                    </p>
+                </div>
+                
+                <div class="section">
+                    <h3>💼 Featured Work</h3>
+                    
+                    <div class="experience-item">
+                        <h4>Creative Director</h4>
+                        <div class="company">Design Studio XYZ</div>
+                        <div class="date">2021 - Present</div>
+                        <p>Led creative team of 12 designers, launched campaigns for Nike and Apple.</p>
+                        <span class="achievement-badge">🏆 150% ROI</span>
+                        <span class="achievement-badge">🌟 5 Awards</span>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h4>Senior UI/UX Designer</h4>
+                        <div class="company">Creative Agency</div>
+                        <div class="date">2018 - 2021</div>
+                        <p>Redesigned major e-commerce platform, increasing conversion by 40%.</p>
+                        <span class="achievement-badge">📱 2M Users</span>
+                        <span class="achievement-badge">🎨 50+ Designs</span>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h4>Art Director</h4>
+                        <div class="company">Startup Creative</div>
+                        <div class="date">2016 - 2018</div>
+                        <p>Built brand identity from ground up for tech startup.</p>
+                        <span class="achievement-badge">🚀 Series A</span>
+                        <span class="achievement-badge">💡 3 Patents</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="circle-decoration"></div>
+    </div>
+</body>
+</html>

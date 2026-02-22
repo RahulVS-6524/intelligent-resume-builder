@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .resume-card {
+            width: 800px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 42px; margin-bottom: 10px; }
+        .header p { font-size: 18px; opacity: 0.9; }
+        .content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        .sidebar {
+            border-right: 2px solid #f0f0f0;
+            padding-right: 30px;
+        }
+        .sidebar h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .sidebar p { margin-bottom: 10px; color: #666; }
+        .main h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .job { margin-bottom: 20px; }
+        .job h4 { color: #333; margin-bottom: 5px; }
+        .job p { color: #666; font-size: 14px; }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .skill {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffd700;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-card">
+        <div class="badge">MODERN TEMPLATE</div>
+        <div class="header">
+            <h1>John Doe</h1>
+            <p>Senior Software Engineer</p>
+            <p>📍 San Francisco, CA | 📧 john.doe@email.com | 📞 (555) 123-4567</p>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <h3>🎓 Education</h3>
+                <p><strong>M.S. Computer Science</strong><br>Stanford University<br>2018-2020</p>
+                <p><strong>B.S. Software Engineering</strong><br>UC Berkeley<br>2014-2018</p>
+                
+                <h3 style="margin-top: 30px;">💪 Strengths</h3>
+                <p>• Leadership</p>
+                <p>• Problem Solving</p>
+                <p>• Team Collaboration</p>
+                <p>• Agile Methodology</p>
+            </div>
+            <div class="main">
+                <h3>💼 Work Experience</h3>
+                <div class="job">
+                    <h4>Senior Developer - Google</h4>
+                    <p>2020 - Present</p>
+                    <p>Led team of 5 developers, improved performance by 40%</p>
+                </div>
+                <div class="job">
+                    <h4>Software Engineer - Microsoft</h4>
+                    <p>2018 - 2020</p>
+                    <p>Developed cloud solutions used by 1M+ users</p>
+                </div>
+                
+                <h3 style="margin-top: 30px;">🛠️ Technical Skills</h3>
+                <div class="skills">
+                    <span class="skill">Python</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Node.js</span>
+                    <span class="skill">AWS</span>
+                    <span class="skill">Docker</span>
+                    <span class="skill">Kubernetes</span>
+                    <span class="skill">MongoDB</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Resume Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .resume {
+            width: 900px;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 2px #00ff9d inset;
+            position: relative;
+            color: #e2e8f0;
+        }
+        
+        /* Matrix-like background effect */
+        .resume::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(transparent 50%, rgba(0, 255, 157, 0.03) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            animation: scan 10s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 20px; }
+        }
+        
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #00ff9d;
+            color: #0f172a;
+            padding: 5px 15px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            border-radius: 0;
+            z-index: 10;
+            border: 1px solid #00ff9d;
+            box-shadow: 0 0 10px #00ff9d;
+        }
+        
+        .header {
+            background: #0f172a;
+            padding: 40px 50px;
+            border-bottom: 3px solid #00ff9d;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00ff9d;
+            font-family: 'Fira Code', monospace;
+            text-shadow: 0 0 10px #00ff9d;
+            margin-bottom: 10px;
+        }
+        
+        .header .title {
+            font-size: 20px;
+            color: #e2e8f0;
+            margin-bottom: 15px;
+        }
+        
+        .header .title::before {
+            content: '$ ';
+            color: #00ff9d;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+        }
+        
+        .contact-item::before {
+            content: '>';
+            color: #00ff9d;
+            font-weight: bold;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            padding: 40px 50px;
+        }
+        
+        .left {
+            border-right: 2px solid #334155;
+            padding-right: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h3 {
+            color: #00ff9d;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-family: 'Fira Code', monospace;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 8px;
+        }
+        
+        .section h3::before {
+            content: '/* ';
+            color: #64748b;
+        }
+        
+        .section h3::after {
+            content: ' */';
+            color: #64748b;
+        }
+        
+        .skill-category {
+            margin-bottom: 20px;
+        }
+        
+        .skill-category h4 {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .skill-category h4::before {
+            content: '// ';
+            color: #00ff9d;
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background: #334155;
+            color: #e2e8f0;
+            padding: 5px 12px;
+            border-radius: 0;
+            font-size: 12px;
+            font-family: 'Fira Code', monospace;
+            border-left: 3px solid #00ff9d;
+        }
+        
+        .skill-tag:hover {
+            background: #00ff9d;
+            color: #0f172a;
+            transform: scale(1.05);
+            transition: all 0.3s;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            position: relative;
+        }
+        
+        .experience-item:hover {
+            border-color: #00ff9d;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+        }
+        
+        .experience-item h4 {
+            color: #00ff9d;
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .experience-item .company {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .experience-item .date {
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 10px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .experience-item .date::before {
+            content: '⏱ ';
+            color: #00ff9d;
+        }
+        
+        .experience-item .description {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .tech-stack span {
+            background: #1e293b;
+            color: #00ff9d;
+            padding: 3px 8px;
+            font-size: 11px;
+            border: 1px solid #334155;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            background: #0f172a;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        
+        .stat-value {
+            color: #00ff9d;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+        
+        .command-line {
+            background: #0f172a;
+            padding: 10px;
+            margin-top: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            color: #00ff9d;
+            border: 1px solid #334155;
+        }
+        
+        .command-line::before {
+            content: '$ developer --skills';
+            color: #64748b;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="badge">&lt;TECHNICAL/&gt;</div>
+        
+        <div class="header">
+            <h1>Sarah Chen</h1>
+            <div class="title">Senior DevOps Engineer / Cloud Architect</div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">sarah.chen@tech.dev</div>
+                <div class="contact-item">github/sarah-chen</div>
+                <div class="contact-item">+1 (555) 890-1234</div>
+                <div class="contact-item">linkedin/in/sarahchen</div>
+                <div class="contact-item">Seattle, WA</div>
+                <div class="contact-item">sarah.dev/portfolio</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="left">
+                <div class="section">
+                    <h3>Technical Skills</h3>
+                    
+                    <div class="skill-category">
+                        <h4>Languages</h4>
+                        <div class="skill-items">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Go</span>
+                            <span class="skill-tag">Rust</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Cloud & DevOps</h4>
+                        <div class="skill-items">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag">Grafana</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Databases</h4>
+                        <div class="skill-items">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Elasticsearch</span>
+                            <span class="skill-tag">DynamoDB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Frameworks</h4>
+                        <div class="skill-items">
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Flask</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>Certifications</h3>
+                    <div class="command-line" style="margin-top: 0;">
+                        AWS Solutions Architect Professional<br>
+                        Certified Kubernetes Administrator (CKA)<br>
+                        HashiCorp Certified: Terraform Associate<br>
+                        Google Cloud Professional DevOps
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">8+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Projects Deployed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Open Source</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">Uptime Achieved</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right">
+                <div class="section">
+                    <h3>Work Experience</h3>
+                    
+                    <div class="experience-item">
+                        <h4>Senior DevOps Engineer</h4>
+                        <div class="company">TechCorp Cloud Solutions</div>
+                        <div class="date">2021 - Present</div>
+                        <div class="description">
+                            • Designed and implemented multi-region AWS architecture serving 10M+ users<br>
+                            • Reduced infrastructure costs by 40% through optimization<br>
+                            • Implemented GitOps workflow with ArgoCD and Kubernetes<br>
+                            • Led migration from monolith to microservices
+                        </div>
+                        <div class="tech-stack">
+                            <span>AWS</span>
+                            <span>K8s</span>
+                            <span>Terraform</span>
+                            <span>Python</span>
+                            <span>ArgoCD</span>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h4>Cloud Infrastructure Engineer</h4>
+                        <div class="company">StartupScale</div>
+                        <div class="date">2018 - 2021</div>
+                        <div class="description">
+                            • Built CI/CD pipelines serving 200+ daily deployments<br>
+                            • Containerized legacy applications using Docker<br>
+                            • Implemented monitoring stack (Prometheus/Grafana)<br>
+                            • Achieved 99.99% uptime for critical services
+                        </div>
+                        <div class="tech-stack">
+                            <span>Docker</span>
+                            <span>Jenkins</span>
+                            <span>Python</span>
+                            <span>Prometheus</span>
+                            <span>ELK</span>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h4>Software Engineer</h4>
+                        <div class="company">DevTech Solutions</div>
+                        <div class="date">2016 - 2018</div>
+                        <div class="description">
+                            • Developed REST APIs serving 500k+ requests daily<br>
+                            • Optimized database queries reducing response time by 60%<br>
+                            • Implemented automated testing with 90% coverage
+                        </div>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>PostgreSQL</span>
+                            <span>Redis</span>
+                            <span>FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>Featured Projects</h3>
+                    <div class="experience-item" style="margin-bottom: 15px;">
+                        <h4>k8s-deployer</h4>
+                        <div class="description">
+                            Open-source Kubernetes deployment tool with 2k+ GitHub stars
+                        </div>
+                        <div class="tech-stack">
+                            <span>Go</span>
+                            <span>K8s</span>
+                            <span>CLI</span>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <h4>cloud-cost-optimizer</h4>
+                        <div class="description">
+                            AWS cost optimization tool saving companies $1M+ annually
+                        </div>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>AWS Lambda</span>
+                            <span>Boto3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="command-line">
+                    Python --version 3.12 | Go 1.21 | Rust 1.75<br>
+                    AWS: 5x Certified | K8s: CKA Certified
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
