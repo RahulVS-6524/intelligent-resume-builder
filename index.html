@@ -20,6 +20,405 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
+        /* ==========================================================================
+           TwinIQ Strategic Midnight Obsidian Theme
+           Bioluminescent Neon Accents & Glassmorphic Obsidian Surfaces
+           ========================================================================== */
+        :root {
+            --tw-canvas: #08090D;
+            --tw-surface: #0E121C;
+            --tw-surface-elevated: #141A29;
+            --tw-subtle: #161D2E;
+            --tw-hover: #1E283D;
+            --tw-border-subtle: rgba(255, 255, 255, 0.08);
+            --tw-border-medium: rgba(255, 255, 255, 0.16);
+            --tw-border-focus: #8B5CF6;
+            --tw-text-primary: #F8FAFC;
+            --tw-text-secondary: #CBD5E1;
+            --tw-text-muted: #8B9BB4;
+            --tw-primary: #8B5CF6;
+            --tw-primary-hover: #7C3AED;
+            --tw-primary-light: rgba(139, 92, 246, 0.15);
+            --tw-accent-ai: #06B6D4;
+            --tw-accent-ai-light: rgba(6, 182, 212, 0.15);
+            --tw-success: #10B981;
+            --tw-success-light: rgba(16, 185, 129, 0.15);
+            --tw-warning: #F59E0B;
+            --tw-warning-light: rgba(245, 158, 11, 0.15);
+            --tw-danger: #EF4444;
+            --tw-danger-light: rgba(239, 68, 68, 0.15);
+            --tw-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            --tw-shadow-hover: 0 14px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(139, 92, 246, 0.25);
+        }
+
+        body.twiniq-theme {
+            background-color: var(--tw-canvas) !important;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.14) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(6, 182, 212, 0.10) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 60%) !important;
+            background-attachment: fixed !important;
+            color: var(--tw-text-primary) !important;
+        }
+
+        /* Nav Header */
+        body.twiniq-theme nav {
+            background: rgba(14, 18, 28, 0.85) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-bottom: 1px solid var(--tw-border-subtle) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        body.twiniq-theme nav .bg-clip-text {
+            background: linear-gradient(135deg, #FFFFFF 0%, #C4B5FD 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        body.twiniq-theme nav p {
+            color: var(--tw-text-muted) !important;
+        }
+
+        body.twiniq-theme nav .bg-indigo-100 {
+            background: rgba(139, 92, 246, 0.15) !important;
+            border-color: rgba(139, 92, 246, 0.35) !important;
+            color: #C4B5FD !important;
+        }
+
+        /* Nav Tabs */
+        body.twiniq-theme #nav-btn-builder.bg-indigo-600,
+        body.twiniq-theme #nav-btn-analyzer.bg-indigo-600,
+        body.twiniq-theme #nav-btn-testing.bg-indigo-600 {
+            background: linear-gradient(135deg, #8B5CF6, #6366F1) !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        body.twiniq-theme #nav-btn-builder:not(.bg-indigo-600),
+        body.twiniq-theme #nav-btn-analyzer:not(.bg-indigo-600),
+        body.twiniq-theme #nav-btn-testing:not(.bg-indigo-600) {
+            color: var(--tw-text-muted) !important;
+            background: transparent !important;
+            border: 1px solid transparent !important;
+        }
+
+        body.twiniq-theme #nav-btn-builder:not(.bg-indigo-600):hover,
+        body.twiniq-theme #nav-btn-analyzer:not(.bg-indigo-600):hover,
+        body.twiniq-theme #nav-btn-testing:not(.bg-indigo-600):hover {
+            color: var(--tw-text-primary) !important;
+            background: rgba(255, 255, 255, 0.06) !important;
+            border-color: var(--tw-border-subtle) !important;
+        }
+
+        body.twiniq-theme nav button[title="Refresh Application"],
+        body.twiniq-theme nav #theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid var(--tw-border-subtle) !important;
+            color: var(--tw-text-muted) !important;
+        }
+        body.twiniq-theme nav button[title="Refresh Application"]:hover,
+        body.twiniq-theme nav #theme-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Cards & Surface Containers */
+        body.twiniq-theme .bg-white:not(#live-resume-document):not(#live-resume-document *):not(#toast-container *) {
+            background-color: var(--tw-surface) !important;
+            border-color: var(--tw-border-subtle) !important;
+            box-shadow: var(--tw-shadow-card) !important;
+            color: var(--tw-text-primary) !important;
+        }
+
+        body.twiniq-theme .border-slate-100,
+        body.twiniq-theme .border-slate-200,
+        body.twiniq-theme .border-slate-200\/80 {
+            border-color: var(--tw-border-subtle) !important;
+        }
+
+        body.twiniq-theme .text-slate-900,
+        body.twiniq-theme .text-slate-800 {
+            color: var(--tw-text-primary) !important;
+        }
+
+        body.twiniq-theme .text-slate-700,
+        body.twiniq-theme .text-slate-600 {
+            color: var(--tw-text-secondary) !important;
+        }
+
+        body.twiniq-theme .text-slate-500,
+        body.twiniq-theme .text-slate-400 {
+            color: var(--tw-text-muted) !important;
+        }
+
+        /* Fast Track Demo Strip */
+        body.twiniq-theme .bg-gradient-to-r.from-indigo-900.via-indigo-800.to-purple-900 {
+            background: linear-gradient(135deg, #0E121C 0%, #161D2E 50%, #141A29 100%) !important;
+            border: 1px solid rgba(139, 92, 246, 0.3) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.15) !important;
+        }
+
+        body.twiniq-theme .bg-gradient-to-r.from-indigo-900 button {
+            background: #141A29 !important;
+            color: #F8FAFC !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+        }
+        body.twiniq-theme .bg-gradient-to-r.from-indigo-900 button:hover {
+            background: #1E283D !important;
+            border-color: #8B5CF6 !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Sub-panels & Elevated Sections */
+        body.twiniq-theme #personal-details-section,
+        body.twiniq-theme .bg-slate-50:not(#live-resume-document *) {
+            background-color: var(--tw-surface-elevated) !important;
+            border-color: var(--tw-border-subtle) !important;
+            color: var(--tw-text-secondary) !important;
+        }
+
+        /* Form Controls & Inputs */
+        body.twiniq-theme input[type="text"],
+        body.twiniq-theme input[type="email"],
+        body.twiniq-theme input[type="number"],
+        body.twiniq-theme select,
+        body.twiniq-theme textarea {
+            background: #141A29 !important;
+            color: #F8FAFC !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            border-radius: 10px !important;
+            font-size: 13px !important;
+            transition: all 0.2s ease !important;
+        }
+
+        body.twiniq-theme input[type="text"]::placeholder,
+        body.twiniq-theme input[type="email"]::placeholder,
+        body.twiniq-theme textarea::placeholder {
+            color: #64748B !important;
+        }
+
+        body.twiniq-theme input[type="text"]:focus,
+        body.twiniq-theme input[type="email"]:focus,
+        body.twiniq-theme select:focus,
+        body.twiniq-theme textarea:focus {
+            outline: none !important;
+            border-color: #8B5CF6 !important;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25) !important;
+        }
+
+        /* Primary Action Buttons */
+        body.twiniq-theme #btn-generate-resume,
+        body.twiniq-theme #btn-run-analysis,
+        body.twiniq-theme button[onclick="runInBrowserTests()"] {
+            background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 50%, #06B6D4 100%) !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.35) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            transition: all 0.25s ease !important;
+        }
+
+        body.twiniq-theme #btn-generate-resume:hover,
+        body.twiniq-theme #btn-run-analysis:hover,
+        body.twiniq-theme button[onclick="runInBrowserTests()"]:hover {
+            box-shadow: 0 6px 28px rgba(139, 92, 246, 0.55), 0 0 15px rgba(6, 182, 212, 0.35) !important;
+            transform: translateY(-2px) scale(1.02) !important;
+        }
+
+        /* Secondary & Utility Buttons */
+        body.twiniq-theme button[onclick="togglePersonalDetails()"] {
+            background: var(--tw-subtle) !important;
+            border-color: var(--tw-border-medium) !important;
+            color: #C4B5FD !important;
+        }
+        body.twiniq-theme button[onclick="togglePersonalDetails()"]:hover {
+            background: var(--tw-hover) !important;
+            border-color: #8B5CF6 !important;
+            color: #FFFFFF !important;
+        }
+
+        body.twiniq-theme .bg-indigo-50 {
+            background-color: var(--tw-primary-light) !important;
+            color: #C4B5FD !important;
+            border-color: rgba(139, 92, 246, 0.3) !important;
+        }
+
+        /* Template Cards */
+        body.twiniq-theme .template-card > div {
+            background-color: var(--tw-surface-elevated) !important;
+            border-color: var(--tw-border-subtle) !important;
+        }
+
+        body.twiniq-theme .template-card:hover > div {
+            border-color: #8B5CF6 !important;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.25) !important;
+        }
+
+        body.twiniq-theme .template-card .bg-slate-50 {
+            background-color: var(--tw-surface) !important;
+            border-color: var(--tw-border-subtle) !important;
+            color: var(--tw-text-secondary) !important;
+        }
+
+        /* Live Resume Document Canvas Preview */
+        body.twiniq-theme #live-resume-document {
+            background: #FFFFFF !important;
+            color: #0F172A !important;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.25) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* Action Bar above Document */
+        body.twiniq-theme #results > .bg-white:first-child {
+            border-left-color: #8B5CF6 !important;
+        }
+
+        body.twiniq-theme button[onclick="sendResumeToAnalyzer()"] {
+            background: linear-gradient(135deg, #06B6D4 0%, #8B5CF6 100%) !important;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.35) !important;
+        }
+
+        body.twiniq-theme button[onclick="copyResumeText()"] {
+            background: #141A29 !important;
+            border: 1px solid var(--tw-border-subtle) !important;
+            color: var(--tw-text-secondary) !important;
+        }
+        body.twiniq-theme button[onclick="copyResumeText()"]:hover {
+            background: #1E283D !important;
+            color: #FFFFFF !important;
+        }
+
+        body.twiniq-theme button[onclick="printResumeDocument()"] {
+            background: #161D2E !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #F8FAFC !important;
+        }
+        body.twiniq-theme button[onclick="printResumeDocument()"]:hover {
+            background: #1E283D !important;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3) !important;
+        }
+
+        /* Analyzer View Source Cards */
+        body.twiniq-theme #source-card-app,
+        body.twiniq-theme #source-card-upload {
+            background: var(--tw-surface-elevated) !important;
+            border-color: var(--tw-border-subtle) !important;
+            transition: all 0.2s ease !important;
+        }
+
+        body.twiniq-theme #source-card-app.border-indigo-600,
+        body.twiniq-theme #source-card-upload.border-indigo-600 {
+            background: rgba(139, 92, 246, 0.12) !important;
+            border-color: #8B5CF6 !important;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.25) !important;
+        }
+
+        body.twiniq-theme #drop-area {
+            background: var(--tw-surface-elevated) !important;
+            border-color: rgba(255, 255, 255, 0.14) !important;
+        }
+        body.twiniq-theme #drop-area:hover {
+            background: rgba(139, 92, 246, 0.08) !important;
+            border-color: #8B5CF6 !important;
+        }
+
+        /* Score Gauge in Analyzer */
+        body.twiniq-theme svg circle[stroke="#f1f5f9"] {
+            stroke: #1E283D !important;
+        }
+
+        body.twiniq-theme #gauge-score-value {
+            color: var(--tw-text-primary) !important;
+        }
+
+        body.twiniq-theme .bg-slate-100 {
+            background-color: #1E283D !important;
+            color: var(--tw-text-muted) !important;
+        }
+
+        /* Status Badges */
+        body.twiniq-theme .bg-emerald-100 {
+            background: rgba(16, 185, 129, 0.15) !important;
+            color: #34D399 !important;
+            border: 1px solid rgba(16, 185, 129, 0.3) !important;
+        }
+
+        body.twiniq-theme .bg-sky-100 {
+            background: rgba(6, 182, 212, 0.15) !important;
+            color: #38BDF8 !important;
+            border: 1px solid rgba(6, 182, 212, 0.3) !important;
+        }
+
+        body.twiniq-theme .bg-amber-100,
+        body.twiniq-theme .bg-amber-50,
+        body.twiniq-theme .bg-amber-50\/70 {
+            background: rgba(245, 158, 11, 0.15) !important;
+            color: #FBBF24 !important;
+            border: 1px solid rgba(245, 158, 11, 0.3) !important;
+        }
+
+        body.twiniq-theme .bg-rose-100,
+        body.twiniq-theme .bg-rose-50 {
+            background: rgba(239, 68, 68, 0.15) !important;
+            color: #F87171 !important;
+            border: 1px solid rgba(239, 68, 68, 0.3) !important;
+        }
+
+        /* Test Center Cards */
+        body.twiniq-theme #testing-view .bg-white {
+            background-color: var(--tw-surface) !important;
+            border-color: var(--tw-border-subtle) !important;
+            box-shadow: var(--tw-shadow-card) !important;
+        }
+
+        body.twiniq-theme #testing-view .bg-white:hover {
+            border-color: rgba(139, 92, 246, 0.3) !important;
+            box-shadow: var(--tw-shadow-hover) !important;
+        }
+
+        /* Terminal Diagnostic Console */
+        body.twiniq-theme #testing-view .bg-slate-950 {
+            background: #070A12 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* Footer */
+        body.twiniq-theme footer {
+            background: rgba(14, 18, 28, 0.6) !important;
+            border-top: 1px solid var(--tw-border-subtle) !important;
+        }
+        body.twiniq-theme footer p {
+            color: var(--tw-text-muted) !important;
+        }
+
+        /* Toasts */
+        body.twiniq-theme #toast-container > div {
+            background: #0E121C !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #F8FAFC !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.25) !important;
+        }
+
+        /* Custom Scrollbars */
+        body.twiniq-theme ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        body.twiniq-theme ::-webkit-scrollbar-track {
+            background: #08090D;
+        }
+        body.twiniq-theme ::-webkit-scrollbar-thumb {
+            background: #1E283D;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        body.twiniq-theme ::-webkit-scrollbar-thumb:hover {
+            background: #8B5CF6;
+        }
+
         /* Clean High-Resolution Print Stylesheet */
         @media print {
             nav, footer, .no-print, #toast-container, .nav-tabs, button, select, input, textarea { 
@@ -54,7 +453,7 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-indigo-50/30 to-blue-50/60 min-h-screen text-slate-800 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+<body class="twiniq-theme bg-gradient-to-br from-slate-50 via-indigo-50/30 to-blue-50/60 min-h-screen text-slate-800 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed bottom-6 right-6 z-50 space-y-3 max-w-md w-full pointer-events-none"></div>
@@ -101,6 +500,12 @@
                             class="px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-200 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 flex items-center">
                         <i class="fas fa-vial-circle-check text-emerald-500 mr-2"></i>
                         <span>Test Center</span>
+                    </button>
+
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle-btn" onclick="toggleTwinIQTheme()" title="Toggle Theme (Midnight Obsidian / Light)"
+                            class="p-2 rounded-xl text-purple-300 hover:text-white hover:bg-white/10 transition">
+                        <i id="theme-icon" class="fas fa-moon text-sm"></i>
                     </button>
 
                     <!-- Quick Reset Button -->
@@ -1973,7 +2378,31 @@ Click "Run System Diagnostics" to execute browser-level verification of all 8 co
         } catch (_) {}
     }
 
+    // TwinIQ Theme Management
+    function toggleTwinIQTheme() {
+        const isDark = document.body.classList.toggle('twiniq-theme');
+        localStorage.setItem('twiniq_theme', isDark ? 'dark' : 'light');
+        const icon = document.getElementById('theme-icon');
+        if (icon) {
+            icon.className = isDark ? 'fas fa-moon text-sm' : 'fas fa-sun text-sm text-amber-500';
+        }
+        showToast(`Theme switched to ${isDark ? 'TwinIQ Midnight Obsidian' : 'Classic Light'}`, 'info');
+    }
+
+    function initTheme() {
+        const saved = localStorage.getItem('twiniq_theme');
+        const icon = document.getElementById('theme-icon');
+        if (saved === 'light') {
+            document.body.classList.remove('twiniq-theme');
+            if (icon) icon.className = 'fas fa-sun text-sm text-amber-500';
+        } else {
+            document.body.classList.add('twiniq-theme');
+            if (icon) icon.className = 'fas fa-moon text-sm';
+        }
+    }
+
     window.onload = function() {
+        initTheme();
         checkAzureStatus();
         applyJobPreset('python-cloud');
         selectTemplate('modern', document.querySelector('.template-card'));
